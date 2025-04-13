@@ -1,0 +1,25 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@gearspace/config/(.*)": "<rootDir>/../libs/config/src/$1",
+    "@gearspace/config": "<rootDir>/../libs/config/src",
+    "@gearspace/common/(.*)": "<rootDir>/../libs/common/src/$1",
+    "@gearspace/common": "<rootDir>/../libs/common/src",
+    "@gearspace/database/(.*)": "<rootDir>/../libs/database/src/$1",
+    "@gearspace/database": "<rootDir>/../libs/database/src",
+    "@gearspace/users/(.*)": "<rootDir>/../libs/users/src/$1",
+    "@gearspace/users": "<rootDir>/../libs/users/src",
+    "@gearspace/auth/(.*)": "<rootDir>/../libs/auth/src/$1",
+    "@gearspace/auth": "<rootDir>/../libs/auth/src"
+  }
+}
