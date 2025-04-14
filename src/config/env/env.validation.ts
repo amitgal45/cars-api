@@ -1,5 +1,5 @@
 import { plainToClass } from 'class-transformer';
-import { IsEnum, IsNumber, IsString, validateSync } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString, ValidateIf, validateSync } from 'class-validator';
 
 enum Environment {
   Development = 'development',
@@ -46,6 +46,31 @@ class EnvironmentVariables {
 
   @IsString()
   JWT_REFRESH_EXPIRATION: string;
+
+  @IsString()
+  JWT_ADMIN_ACCESS_SECRET: string;
+
+  @IsString()
+  JWT_ADMIN_ACCESS_EXPIRATION: string;
+
+  @IsString()
+  @IsEnum(['sendgrid', 'mailgun'])
+  EMAIL_PROVIDER: 'sendgrid' | 'mailgun';
+
+  @IsString()
+  EMAIL_FROM_ADDRESS: string;
+
+  @ValidateIf((o) => o.EMAIL_PROVIDER === 'sendgrid')
+  @IsString()
+  SENDGRID_API_KEY: string;
+
+  @ValidateIf((o) => o.EMAIL_PROVIDER === 'mailgun')
+  @IsString()
+  MAILGUN_API_KEY: string;
+
+  @ValidateIf((o) => o.EMAIL_PROVIDER === 'mailgun')
+  @IsString()
+  MAILGUN_DOMAIN: string;
 
   DB_POOL_SIZE: number;
 

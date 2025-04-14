@@ -20,6 +20,8 @@
     "@gearspace/users/(.*)": "<rootDir>/../libs/users/src/$1",
     "@gearspace/users": "<rootDir>/../libs/users/src",
     "@gearspace/auth/(.*)": "<rootDir>/../libs/auth/src/$1",
-    "@gearspace/auth": "<rootDir>/../libs/auth/src"
+    "@gearspace/auth": "<rootDir>/../libs/auth/src",
+    "gearspace/notification/(.*)": "<rootDir>/../libs/notification/src/$1",
+    "gearspace/notification": "<rootDir>/../libs/notification/src"
   }
 }

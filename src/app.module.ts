@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '@gearspace/auth';
 import { ClientAuthModule } from './auth/auth.module';
 import { validate } from './config/env/env.validation';
+import { EmailModule } from 'gearspace/notification/email/email.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { validate } from './config/env/env.validation';
     AuthModule.register(),
     DatabaseModule.forFeature([User]),
     ClientAuthModule,
+    // EmailModule.forRoot(),
   ],
   controllers: [],
   providers: [],

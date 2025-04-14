@@ -1,73 +1,156 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Cars API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A modern NestJS-based API for managing car-related data with authentication and user management.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Project Structure
 
-## Description
+```
+cars-api/
+├── src/                    # Main application source
+│   ├── auth/              # Authentication routes and controllers
+│   ├── config/            # Application configuration
+│   ├── app.module.ts      # Root application module
+│   ├── main.ts            # Application entry point
+│   └── app.controller.ts  # Root controller
+│
+├── libs/                  # Shared libraries
+│   ├── auth/             # Authentication library
+│   │   ├── guards/       # Authentication guards
+│   │   ├── strategies/   # Passport strategies
+│   │   ├── decorators/   # Custom decorators
+│   │   └── interfaces/   # Type definitions
+│   │
+│   ├── common/           # Common utilities
+│   ├── database/         # Database configuration and entities
+│   └── users/            # User management
+```
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
+
+- 🔐 JWT-based authentication
+- 👥 User management
+- 🗄️ PostgreSQL database integration
+- 📝 Swagger API documentation
+- 🧪 Testing setup with Jest
+- 🔄 TypeORM for database operations
+- 🛡️ Role-based access control
+
+## Prerequisites
+
+- Node.js 20.18.0 or higher
+- pnpm 8.5.1
+- PostgreSQL database
 
 ## Installation
 
+1. Clone the repository:
 ```bash
-$ pnpm install
+git clone <repository-url>
+cd cars-api
 ```
 
-## Running the app
-
+2. Install dependencies:
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
 ```
 
-## Test
+3. Create a `.env` file in the root directory with the following variables:
+```env
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=your_username
+DATABASE_PASSWORD=your_password
+DATABASE_NAME=cars_api
 
-```bash
-# unit tests
-$ pnpm run test
+JWT_ACCESS_SECRET=your_jwt_secret
+JWT_REFRESH_SECRET=your_refresh_secret
+JWT_ACCESS_EXPIRATION=15m
+JWT_REFRESH_EXPIRATION=7d
 
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+JWT_ADMIN_ACCESS_SECRET=your_admin_secret
+JWT_ADMIN_ACCESS_EXPIRATION=15m
 ```
 
-## Support
+## Development
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Start the development server:
+```bash
+pnpm start:dev
+```
 
-## Stay in touch
+The API will be available at `http://localhost:3000`
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## API Documentation
+
+Once the server is running, you can access the Swagger documentation at:
+```
+http://localhost:3000/api
+```
+
+## Testing
+
+Run the test suite:
+```bash
+pnpm test
+```
+
+Run tests in watch mode:
+```bash
+pnpm test:watch
+```
+
+Generate test coverage:
+```bash
+pnpm test:cov
+```
+
+## Building for Production
+
+Build the application:
+```bash
+pnpm build
+```
+
+Start the production server:
+```bash
+pnpm start:prod
+```
+
+## Available Scripts
+
+- `pnpm start` - Start the application
+- `pnpm start:dev` - Start the application in development mode
+- `pnpm start:debug` - Start the application in debug mode
+- `pnpm start:prod` - Start the application in production mode
+- `pnpm test` - Run tests
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:cov` - Generate test coverage
+- `pnpm lint` - Run linting
+- `pnpm format` - Format code with Prettier
+- `pnpm build` - Build the application
+
+## Libraries
+
+### @gearspace/auth
+Authentication library providing JWT-based authentication, guards, and strategies.
+
+### @gearspace/database
+Database configuration and entity management using TypeORM.
+
+### @gearspace/users
+User management functionality including CRUD operations and role management.
+
+### @gearspace/common
+Shared utilities and common functionality used across the application.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the UNLICENSED License.

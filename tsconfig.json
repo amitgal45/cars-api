@@ -47,6 +47,12 @@
       ],
       "@gearspace/auth/*": [
         "libs/auth/src/*"
+      ],
+      "gearspace/notification": [
+        "libs/notification/src"
+      ],
+      "gearspace/notification/*": [
+        "libs/notification/src/*"
       ]
     }
   }
