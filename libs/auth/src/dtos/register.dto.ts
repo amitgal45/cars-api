@@ -1,13 +1,12 @@
 import { IsEmail, IsString, IsOptional, MinLength, Matches } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Match } from '@gearspace/common';
+import { IsUniqueEmail } from '@gearspace/common/decorators/validation/is-unique.decorator';
 
 export class RegisterDto {
-  @ApiProperty({
-    example: 'user@example.com',
-    description: 'User email address',
-  })
+  @ApiProperty({ example: 'user@example.com', description: 'User email address' })
   @IsEmail({}, { message: 'Please provide a valid email' })
+  @IsUniqueEmail({ message: 'Email already registered' })
   email: string;
 
   @ApiProperty({

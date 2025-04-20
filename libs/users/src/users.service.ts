@@ -30,6 +30,10 @@ export class UsersService {
     return this.userRepository.findByEmail(email);
   }
 
+  async findByPhoneNumber(phoneNumber: string): Promise<User | null> {
+    return this.userRepository.findByPhoneNumber(phoneNumber);
+  }
+
   async updateLastLogin(userId: string): Promise<void> {
     await this.userRepository.update(userId, { lastLogin: new Date() });
   }

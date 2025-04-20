@@ -1,0 +1,4 @@
+export const SMS_TOKENS = {
+  SMS_PROVIDER: 'SMS_PROVIDER',
+  TEMPLATE_ENGINE: 'TEMPLATE_ENGINE',
+} as const;

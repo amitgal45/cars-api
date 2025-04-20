@@ -7,6 +7,9 @@ export class User extends BaseEntity {
   @Column({ unique: true })
   email: string;
 
+  @Column({ unique: false, nullable: true })
+  phoneNumber: string;
+
   @Exclude()
   @Column()
   passwordHash: string;

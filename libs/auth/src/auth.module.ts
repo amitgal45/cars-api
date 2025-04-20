@@ -7,6 +7,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { UsersModule } from '@gearspace/users';
+import { SmsModule } from 'gearspace/notification/sms';
 
 export interface IAuthModuleOptions extends AuthModuleOptions {
   isAdmin?: boolean;
@@ -44,6 +45,7 @@ export class AuthModule {
           }),
         }),
         UsersModule,
+        SmsModule,
       ],
       providers: [
         {
@@ -54,7 +56,7 @@ export class AuthModule {
         JwtStrategy,
         ...guards,
       ],
-      exports: [AuthService, JwtModule, UsersModule],
+      exports: [AuthService, JwtModule, UsersModule, SmsModule],
       global: options.global,
     };
   }

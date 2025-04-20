@@ -16,6 +16,8 @@ import { Role } from './enums/roles.enum';
 import { ILoginRequest } from './interfaces/auth.interface';
 import { DatabaseService, User } from '@gearspace/database';
 import { UsersService } from '@gearspace/users';
+import { SmsService } from 'gearspace/notification/sms';
+// import { SmsService } from 'gearspace/notification/sms';
 
 @Injectable()
 export class AuthService {
@@ -24,6 +26,7 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly userService: UsersService,
     private readonly databaseService: DatabaseService,
+    private readonly smsService: SmsService,
   ) {}
 
   private async hashData(data: string): Promise<string> {
@@ -96,6 +99,14 @@ export class AuthService {
       if (error instanceof UnauthorizedException) {
         throw error;
       }
+      throw new InternalServerErrorException('Login failed');
+    }
+  }
+
+  async loginOtp(loginOtp: { phoneNumber: string }) {
+    try {
+      const user = await this.userService.findByEmail(loginOtp.phoneNumber);
+    } catch (error) {
       throw new InternalServerErrorException('Login failed');
     }
   }

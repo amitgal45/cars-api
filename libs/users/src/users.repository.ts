@@ -25,6 +25,16 @@ export class UserRepository extends BaseRepository<User> {
     }
   }
 
+  async findByPhoneNumber(phoneNumber: string): Promise<User | null> {
+    try {
+      return await this.userRepository.findOne({
+        where: { phoneNumber },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Error finding user by phone number');
+    }
+  }
+
   async longProcess() {
     await this.withTransaction(async (manager) => {
       const user = manager.create(User, {

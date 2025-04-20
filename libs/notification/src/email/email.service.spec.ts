@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EmailService } from './email.service';
 import { EmailTemplate } from '@gearspace/database/entities/template-email.entity';
-import { INJECTION_TOKENS } from './constant/injection-tokens';
+import { INJECTION_TOKENS } from '../shared/notification.constant';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SendGridProvider } from './providers/sendgrid.provider';
 
@@ -118,4 +118,4 @@ describe('EmailService', () => {
     expect(result.success).toBe(true);
     expect(mockTemplateRepository.findById).toHaveBeenCalledWith('car-listing-notification');
   }, 30000);
-}); 
+});
